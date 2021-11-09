@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import "./style.css";
+import "./../style.css"
 
 const Login = () => {
     const history = useHistory();
@@ -50,13 +50,13 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <div>
-                <h1>Log in to your account</h1>
-                <form onSubmit= {onClickLoginButton}>
+        <div className="d-flex justify-content-center align-items-center backgroundAuth" style={{height: "100vh"}}>
+            <div className="d-flex align-items-center row containerAuth" style={{height: "70vh", width: "70vw"}}>
+                <form className="text-center px-5" onSubmit= {onClickLoginButton}>
+                    <h1 className="fontSecondary" style={{fontSize: 80}}>Log in to your account</h1>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control mb-1"
                         placeholder="username or email"
                         name="usernameOrEmail"
                         value= {loginData.usernameOrEmail}
@@ -70,20 +70,20 @@ const Login = () => {
                         value= {loginData.password}
                         onChange= {onFormInputChange}
                     />
-                    <div>
+                    <div className="mt-5">
                         <span>
-                            <Link to="/resetPassword">Forgotten your password?</Link>                  
+                            <Link to="/resetPassword">Forgotten your password</Link>?               
                             <br/>Don't have an account? <Link to="/register">Sign up</Link>
                         </span>
-                    </div>
-                    <div>
-                        <button>
-                            Log In
+                        <br/>
+                        <button className="buttonStyle mb-2 mt-1">
+                            LOGIN
+                        </button>
+                        <br/>
+                        <button className="buttonStyle">
+                            <Link className="buttonStyle" style={{textDecoration: "none"}} to="/">GO BACK HOME</Link>                  
                         </button>
                     </div>
-                    <button>
-                        <Link to="/">GO BACK HOME</Link>                  
-                    </button>
                 </form>
             </div>
         </div>

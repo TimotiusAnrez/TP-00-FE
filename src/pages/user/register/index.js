@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import "./style.css";
+import "./../style.css";
 
 const Register = () => {
     const history = useHistory();
@@ -62,13 +62,13 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <div>
-                <h1>Sign up your account</h1>
-                <form onSubmit= {onClickSignupButton}>
+        <div className="d-flex justify-content-center align-items-center backgroundAuth" style={{height: "100vh"}}>
+            <div className="d-flex align-items-center row containerAuth" style={{height: "70vh", width: "70vw"}}>
+                <form className="text-center px-5" onSubmit= {onClickSignupButton}>
+                    <h1 className="fontSecondary" style={{fontSize: 80}}>Sign up your account</h1>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control mb-1"
                         placeholder="username"
                         name="username"
                         value= {signupData.username}
@@ -76,7 +76,7 @@ const Register = () => {
                     />
                     <input
                         type="email"
-                        className="form-control"
+                        className="form-control mb-1"
                         placeholder="email"
                         value= {signupData.email}
                         name="email"
@@ -84,7 +84,7 @@ const Register = () => {
                     />
                     <input
                         type="password"
-                        className="form-control"
+                        className="form-control mb-1"
                         placeholder="password"
                         value= {signupData.password}
                         name="password"
@@ -98,22 +98,19 @@ const Register = () => {
                         value= {signupData.confirmPassword}
                         onChange= {onFormInputChange}
                     />
-                    <div>
+                    <div className="mt-5">
                         <span>
                             Already have an account? <Link to="/login">Login</Link>
                         </span> 
-                    </div>
-                    <div>
-                        <button
-                            type="submit"
-                            className="btn btn-outline-primary shadow mr-2"
-                        >
-                        Sign up
+                        <br/>
+                        <button className="buttonStyle mb-2 mt-1">
+                            SIGNUP
+                        </button>
+                        <br/>
+                        <button className="buttonStyle">
+                            <Link className="buttonStyle" style={{textDecoration: "none"}} to="/">GO BACK HOME</Link>                  
                         </button>
                     </div>
-                    <button>
-                        <Link to="/">GO BACK HOME</Link>                  
-                    </button>
                 </form>
             </div>
         </div>

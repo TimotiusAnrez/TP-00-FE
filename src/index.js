@@ -19,7 +19,7 @@ ReactDOM.render(
     )}>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

@@ -1,11 +1,11 @@
-.backgroundHome{
-    background-image: url("./../../assets/homeWallpaper.jpeg");
+.backgroundAuth{
+    background-image: url("./../../assets/homeWallpaper2.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.containerHome{
+.containerAuth{
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 30px;
 }
