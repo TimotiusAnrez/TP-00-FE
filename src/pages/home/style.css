@@ -1,11 +1,9 @@
-.backgroundHome{
-    background-image: url("./../../assets/homeWallpaper.jpeg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* FOR TABLET */
+@media only screen and (max-width: 768px) {
+
 }
 
-.containerHome{
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 30px;
+/* FOR MOBILE */
+@media only screen and (max-width: 480px) {
+    
 }

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import "./../style.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import "./../style.css";
+import RedirectButton from "../../../components/RedirectButton";
+import FormContainer from "../../../components/FormContainer";
+import authWallpaper from "../../../assets/authWallpaper.jpeg";
 
 const Register = () => {
     const history = useHistory();
@@ -62,59 +65,52 @@ const Register = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center backgroundAuth" style={{height: "100vh"}}>
-            <div className="d-flex align-items-center row containerAuth" style={{height: "70vh", width: "70vw"}}>
-                <form className="text-center px-5" onSubmit= {onClickSignupButton}>
-                    <h1 className="fontSecondary" style={{fontSize: 80}}>Sign up your account</h1>
-                    <input
-                        type="text"
-                        className="form-control mb-1"
-                        placeholder="username"
-                        name="username"
-                        value= {signupData.username}
-                        onChange= {onFormInputChange}
-                    />
-                    <input
-                        type="email"
-                        className="form-control mb-1"
-                        placeholder="email"
-                        value= {signupData.email}
-                        name="email"
-                        onChange= {onFormInputChange}
-                    />
-                    <input
-                        type="password"
-                        className="form-control mb-1"
-                        placeholder="password"
-                        value= {signupData.password}
-                        name="password"
-                        onChange= {onFormInputChange}
-                    />
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="confirm password"
-                        name="confirmPassword"
-                        value= {signupData.confirmPassword}
-                        onChange= {onFormInputChange}
-                    />
-                    <div className="mt-5">
-                        <span>
-                            Already have an account? <Link to="/login">Login</Link>
-                        </span> 
-                        <br/>
-                        <button className="buttonStyle mb-2 mt-1">
-                            SIGNUP
-                        </button>
-                        <br/>
-                        <button className="buttonStyle">
-                            <Link className="buttonStyle" style={{textDecoration: "none"}} to="/">GO BACK HOME</Link>                  
-                        </button>
-                    </div>
-                </form>
+        <FormContainer
+            title="Sign up your account"
+            backgroundImage={authWallpaper}
+        >
+            <div onSubmit={onClickSignupButton}>
+                <input
+                    type="text"
+                    className="form-control mb-1"
+                    placeholder="username"
+                    name="username"
+                    value= {signupData.username}
+                    onChange= {onFormInputChange}
+                />
+                <input
+                    type="email"
+                    className="form-control mb-1"
+                    placeholder="email"
+                    value= {signupData.email}
+                    name="email"
+                    onChange= {onFormInputChange}
+                />
+                <input
+                    type="password"
+                    className="form-control mb-1"
+                    placeholder="password"
+                    value= {signupData.password}
+                    name="password"
+                    onChange= {onFormInputChange}
+                />
+                <input
+                    type="password"
+                    className="form-control"
+                    placeholder="confirm password"
+                    name="confirmPassword"
+                    value= {signupData.confirmPassword}
+                    onChange= {onFormInputChange}
+                />
+                <p style={{color: "gray", fontSize: 16}}>*password requires minimum of 6 characters</p>
+                <p className="mt-5" style={{fontSize: 16}}>
+                    Already have an account? <Link to="/login">Login</Link>
+                </p> 
+                <RedirectButton buttonLabel="SIGNUP" buttonLink="/todo"/>
             </div>
-        </div>
+            <RedirectButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>
+        </FormContainer>
     );
-}
+};
  
 export default Register;

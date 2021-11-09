@@ -6,18 +6,11 @@
     font-family: 'Bebas Neue', cursive;
 }
 
-.buttonStyle {
-    width: 180px;
-    padding: 10px;
-    border: none;
-    background-color: #cf77a5;
-    font-weight: 400;
-    font-size: 15px;
-    color: white;
+/* FOR TABLET */
+@media only screen and (max-width: 768px) {
+
 }
 
-.buttonStyle:hover {
-    cursor: pointer;
-    opacity: 0.7;
-    transition: 200ms;
+/* FOR MOBILE */
+@media only screen and (max-width: 480px) {
 }

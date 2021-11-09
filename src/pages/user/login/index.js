@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import "./../style.css"
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import "./../style.css"
+import RedirectButton from "../../../components/RedirectButton";
+import FormContainer from "../../../components/FormContainer";
+import authWallpaper from "../../../assets/authWallpaper.jpeg";
 
 const Login = () => {
     const history = useHistory();
@@ -50,44 +53,36 @@ const Login = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center backgroundAuth" style={{height: "100vh"}}>
-            <div className="d-flex align-items-center row containerAuth" style={{height: "70vh", width: "70vw"}}>
-                <form className="text-center px-5" onSubmit= {onClickLoginButton}>
-                    <h1 className="fontSecondary" style={{fontSize: 80}}>Log in to your account</h1>
-                    <input
-                        type="text"
-                        className="form-control mb-1"
-                        placeholder="username or email"
-                        name="usernameOrEmail"
-                        value= {loginData.usernameOrEmail}
-                        onChange= {onFormInputChange}
-                    />
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="password"
-                        name="password"
-                        value= {loginData.password}
-                        onChange= {onFormInputChange}
-                    />
-                    <div className="mt-5">
-                        <span>
-                            <Link to="/resetPassword">Forgotten your password</Link>?               
-                            <br/>Don't have an account? <Link to="/register">Sign up</Link>
-                        </span>
-                        <br/>
-                        <button className="buttonStyle mb-2 mt-1">
-                            LOGIN
-                        </button>
-                        <br/>
-                        <button className="buttonStyle">
-                            <Link className="buttonStyle" style={{textDecoration: "none"}} to="/">GO BACK HOME</Link>                  
-                        </button>
-                    </div>
-                </form>
+        <FormContainer 
+            title="Log in to your account"
+            backgroundImage={authWallpaper}
+        >
+            <div onSubmit= {onClickLoginButton}>
+                <input
+                    type="text"
+                    className="form-control mb-1"
+                    placeholder="username or email"
+                    name="usernameOrEmail"
+                    value= {loginData.usernameOrEmail}
+                    onChange= {onFormInputChange}
+                />
+                <input
+                    type="password"
+                    className="form-control"
+                    placeholder="password"
+                    name="password"
+                    value= {loginData.password}
+                    onChange= {onFormInputChange}
+                />
+                <p className="mb-1 mt-5" style={{fontSize: 16}}>
+                    <Link to="/resetPassword">Forgotten your password</Link>?               
+                    <br/>Don't have an account? <Link to="/register">Sign up</Link>
+                </p>
+                <RedirectButton buttonLabel="LOGIN" buttonLink="/todo"/>
             </div>
-        </div>
+            <RedirectButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>    
+        </FormContainer>
     );
-}
+};
  
 export default Login;
