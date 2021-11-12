@@ -2,7 +2,7 @@ import React from "react";
 
 const FormContainer = (props) => {
     return (
-        <div className="d-flex justify-content-center align-items-center backgroundHome" 
+        <div className="d-flex justify-content-center align-items-center" 
             style={{
                 height: "100vh",
                 width: "100vw",
@@ -12,7 +12,7 @@ const FormContainer = (props) => {
                 backgroundSize: "cover",
             }}
         >
-            <div className="d-flex justify-content-center align-items-center p-5" 
+            <div className="p-5" 
                 style={{
                     width: "70vw",
                     backgroundColor: "rgba(255, 255, 255, 0.5)",

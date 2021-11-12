@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Login from './pages/user/login';
 import ResetPassword from './pages/user/resetPassword';
 import Register from './pages/user/register';
+import Todo from './pages/todo';
 import PageNotFound from './pages/pageNotFound';
 import { Switch, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/resetPassword" exact component={ResetPassword} />
         <Route path="/register" exact component={Register} />
+        <Route path="/todo" exact component={Todo} />
         <Route path="*" component={PageNotFound} />
       </Switch>
     </div>
