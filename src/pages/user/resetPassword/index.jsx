@@ -3,7 +3,6 @@ import "../style.css"
 import axios from "axios";
 import FormContainer from '../../../components/FormContainer';
 import RedirectButton from '../../../components/RedirectButton';
-import authWallpaper from "../../../assets/authWallpaper.jpeg";
 
 const ResetPassword = () => {
     const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
@@ -29,7 +28,7 @@ const ResetPassword = () => {
     return (
         <FormContainer
             title="Did you forget your password?"
-            backgroundImage={authWallpaper}
+            backgroundImage={"https://images.unsplash.com/photo-1623410439349-c8b831666e8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"}
         >
             <div 
                 action="/forgotPassword" 

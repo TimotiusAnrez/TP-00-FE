@@ -11,10 +11,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   '& .MuiSwitch-switchBase': {
     margin: 1,
     padding: 0,
-    transform: 'translateX(-20px)',
+    transform: 'translateX(20px)',
     '&.Mui-checked': {
       color: '#fff',
-      transform: 'translateX(15px)',
+      transform: 'translateX(-15px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           '#fff',
@@ -22,15 +22,15 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+        backgroundColor: theme.palette.mode === 'dark' ? 'cornsilk' : 'lavenderblush',
       },
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+    backgroundColor: theme.palette.mode === 'dark' ? '#001e3c' : '#001e3c',
     width: 42,
     height: 42,
-    transform: 'translateX(20px)',
+    transform: 'translateX(16px)',
     '&:before': {
       content: "''",
       position: 'absolute',
@@ -47,7 +47,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+    backgroundColor: theme.palette.mode === 'dark' ? 'lavenderblush' : 'cornsilk',
     borderRadius: 20 / 2,
   },
 }));
