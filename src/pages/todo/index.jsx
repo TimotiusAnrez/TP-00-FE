@@ -1,11 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./style.css";
 import useTheme from './useTheme';
 import renderDate from './renderDate';
 import SwitchButton from "../../components/SwitchButton";
+import SquareCheckbox from '../../components/SquareCheckbox';
 
 const Todo = () => {
     const { theme, toggleTheme } = useTheme();
+
+    const [newTodo, setNewTodo] = useState("");
+    const [opacity, setOpacity] = useState(0);
+    const [transition, setTransition] = useState("none");
+    
+    const [todos, setTodos] = useState([
+        { check: false, label: "Buy vegetables and frozen food [contoh yaa ini wkwk nanti apus aja]" },
+        { check: false, label: "Pick up kids at daycare [contoh yaa ini wkwk nanti apus aja]" },
+    ]);
+    
+    const onAddTodoClick = (e) => {
+        e.preventDefault();
+        const newTodos = [...todos, { check: false, label: newTodo }];
+        setTodos(newTodos);
+        setNewTodo("");
+    };
+    
+    const onTodoCheckboxClick = (index) => {
+        const newTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, check: !todo.check }
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    };
+
+    const onTodoDeleteClick = (index) => {
+        const newTodos = todos.filter((todo, i) => {
+            if (i === index) {
+                return false;
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    }
+
+    const hide = () => {
+        setOpacity(0);
+        setTransition("none");
+    }
+
+    const show = () => {
+        setOpacity(0.3);
+        setTransition("200ms");
+    }
 
     return (
         <div>
@@ -66,19 +113,77 @@ const Todo = () => {
                     </div>
                 </div>
             </div>
-            <div className=""
-                    style={{
-                        position: "absolute",
-                        left: "10vw",
-                        right: "10vw",
-                        top: "20vh",
-                        width: "80vw",
-                        height: "70vh",
-                        backgroundColor: "rgba(245, 245, 245, 0.8)",
-                        boxShadow: "15px 15px 15px -5px rgba(0,0,0,0.2)",
-                        WebkitBoxShadow: "15px 15px 15px -5px rgba(0,0,0,0.2)",
-                    }}>
+            <div className="p-4"
+                style={{
+                    position: "absolute",
+                    left: "10vw",
+                    right: "10vw",
+                    top: "20vh",
+                    width: "80vw",
+                    height: "70vh",
+                    backgroundColor: theme === "dark" ? "rgba(25, 25, 25, 0.8)" : "rgba(245, 245, 245, 0.8)",
+                    boxShadow: theme === "dark" ? "15px 15px 15px -5px rgba(255,255,255,0.2)" : "15px 15px 15px -5px rgba(0,0,0,0.2)",
+                    WebkitBoxShadow: theme === "dark" ? "15px 15px 15px -5px rgba(255,255,255,0.2)" : "15px 15px 15px -5px rgba(0,0,0,0.2)",
+                }}>
+                <div class="row mb-3 g-5 pt-3">
+                    <div class="col-auto">
+                        <input type="text" 
+                            class="form-control col-auto" 
+                            id="newTodo" 
+                            style={{width: "60vw", padding: 8}} 
+                            placeholder=" ✍🏻 What needs to be done today?"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                        /> 
+                    </div>
+                    <button style={{
+                            width: 200,
+                            padding: 10,
+                            border: "none",
+                            backgroundColor: "#cf77a5",
+                            fontWeight: 400,
+                            fontSize: 15,
+                            color: "white",
+                            textDecoration: "none",
+                        }}
+                        onClick={onAddTodoClick}>
+                        Add
+                    </button>
                 </div>
+                {
+                    todos.map((todo, index) => {
+                        return (
+                            <div className="d-flex flex-row" key={index}
+                                style={{
+                                    color: theme === "dark" ? "whitesmoke" : "black",
+                                    fontSize: 20,
+                                    marginLeft: 20,
+                                }}>
+                                <SquareCheckbox onClick={() => onTodoCheckboxClick(index)} checked={todo.check}/>
+                                <p style={{
+                                        marginBottom: 0, 
+                                        transform: "translateY(5px)"
+                                    }}
+                                    onMouseEnter={show} onMouseLeave={hide}>
+                                    {todo.label}
+                                </p>
+
+                                <button onClick={() => onTodoDeleteClick(index)}
+                                    style={{
+                                        border: "0px solid white",
+                                        backgroundColor: "transparent",
+                                        paddingLeft: 15,
+                                        opacity: `${opacity}`,
+                                        transition: `${transition}`
+                                    }}
+                                    onMouseEnter={show} onMouseLeave={hide}>
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        )
+                    })
+                }
+            </div>
             <div className="" 
                 style={{
                     height: "60vh",
@@ -91,4 +196,5 @@ const Todo = () => {
     );
 };
  
+
 export default Todo;

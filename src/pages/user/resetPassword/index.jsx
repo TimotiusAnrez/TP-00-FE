@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../style.css"
 import axios from "axios";
 import FormContainer from '../../../components/FormContainer';
-import RedirectButton from '../../../components/RedirectButton';
+import ActionButton from '../../../components/ActionButton';
 
 const ResetPassword = () => {
     const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
@@ -42,9 +42,9 @@ const ResetPassword = () => {
                     name="email"
                     placeholder="email"
                 />
-                <RedirectButton buttonLabel="SEND VERIFICATION" buttonLink="/"/>
+                <ActionButton buttonLabel="SEND VERIFICATION" buttonLink="/"/>
             </div>
-            <RedirectButton className="mt-3" buttonLabel="GO BACK TO LOGIN" buttonLink="/login"/>
+            <ActionButton className="mt-3" buttonLabel="GO BACK TO LOGIN" buttonLink="/login"/>
         </FormContainer>
     );
 };

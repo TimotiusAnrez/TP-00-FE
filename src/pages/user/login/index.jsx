@@ -3,7 +3,7 @@ import "./../style.css"
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import RedirectButton from "../../../components/RedirectButton";
+import ActionButton from "../../../components/ActionButton";
 import FormContainer from "../../../components/FormContainer";
 
 const Login = () => {
@@ -77,9 +77,9 @@ const Login = () => {
                     <Link to="/resetPassword">Forgotten your password</Link>?               
                     <br/>Don't have an account? <Link to="/register">Sign up</Link>
                 </p>
-                <RedirectButton buttonLabel="LOGIN" buttonLink="/todo"/>
+                <ActionButton buttonLabel="LOGIN" buttonLink="/todo"/>
             </div>
-            <RedirectButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>    
+            <ActionButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>    
         </FormContainer>
     );
 };

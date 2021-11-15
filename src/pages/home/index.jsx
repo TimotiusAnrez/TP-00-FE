@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import RedirectButton from "../../components/RedirectButton";
+import ActionButton from "../../components/ActionButton";
 import FormContainer from "../../components/FormContainer";
 
 const Home = () => {
@@ -12,9 +12,9 @@ const Home = () => {
             <p className="mb-5" style={{fontSize: 30, marginTop: -40, color: "grey"}}>
                 Your future is created by what you do t̶o̶m̶o̶r̶r̶o̶w̶ <span style={{color: "crimson"}}>today.</span>
             </p>
-            <RedirectButton buttonLabel="GO TO LOGIN" buttonLink="/login"/>
+            <ActionButton buttonLabel="GO TO LOGIN" buttonLink="/login"/>
             <br/>
-            <RedirectButton className="mt-3" buttonLabel="OR SIGN UP" buttonLink="/register"/>
+            <ActionButton className="mt-3" buttonLabel="OR SIGN UP" buttonLink="/register"/>
         </FormContainer>
     );
 };

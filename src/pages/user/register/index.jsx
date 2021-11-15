@@ -3,7 +3,7 @@ import "./../style.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
-import RedirectButton from "../../../components/RedirectButton";
+import ActionButton from "../../../components/ActionButton";
 import FormContainer from "../../../components/FormContainer";
 
 const Register = () => {
@@ -105,9 +105,9 @@ const Register = () => {
                 <p className="mt-5" style={{fontSize: 16}}>
                     Already have an account? <Link to="/login">Login</Link>
                 </p> 
-                <RedirectButton buttonLabel="SIGNUP" buttonLink="/todo"/>
+                <ActionButton buttonLabel="SIGNUP" buttonLink="/todo"/>
             </div>
-            <RedirectButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>
+            <ActionButton className="mt-3" buttonLabel="GO BACK HOME" buttonLink="/"/>
         </FormContainer>
     );
 };

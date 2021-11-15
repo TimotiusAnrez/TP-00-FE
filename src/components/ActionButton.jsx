@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 
-const RedirectButton = (props) => {
+const ActionButton = (props) => {
     const [opacity, setOpacity] = useState("initial");
     const [transition, setTransition] = useState("none");
 
@@ -22,11 +22,11 @@ const RedirectButton = (props) => {
             }}
             onMouseEnter={() => {
                 setOpacity(0.7);
-                setTransition("200ms")
+                setTransition("200ms");
             }}
             onMouseLeave={() => {
                 setOpacity("initial");
-                setTransition("none")
+                setTransition("none");
             }}
         >
             <Link style={{textDecoration: "none", color: "white"}} to={props.buttonLink}>
@@ -36,4 +36,4 @@ const RedirectButton = (props) => {
     );
 };
 
-export default RedirectButton;
+export default ActionButton;
