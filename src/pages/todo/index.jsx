@@ -11,15 +11,15 @@ const Todo = () => {
     const [newTodo, setNewTodo] = useState("");
     const [opacity, setOpacity] = useState(0);
     const [transition, setTransition] = useState("none");
-    
+
     const [todos, setTodos] = useState([
-        { check: false, label: "Buy vegetables and frozen food [contoh yaa ini wkwk nanti apus aja]" },
-        { check: false, label: "Pick up kids at daycare [contoh yaa ini wkwk nanti apus aja]" },
+        { check: false, label: "Buy vegetables and frozen food [contoh yaa ini wkwk nanti apus aja]", isEditMode: false, editTodo: ""},
+        { check: false, label: "Pick up kids at daycare [contoh yaa ini wkwk nanti apus aja]", isEditMode: false, editTodo: ""},
     ]);
     
     const onAddTodoClick = (e) => {
         e.preventDefault();
-        const newTodos = [...todos, { check: false, label: newTodo }];
+        const newTodos = [...todos, { check: false, label: newTodo, isEditMode: false }];
         setTodos(newTodos);
         setNewTodo("");
     };
@@ -27,7 +27,7 @@ const Todo = () => {
     const onTodoCheckboxClick = (index) => {
         const newTodos = todos.map((todo, i) => {
             if (i === index) {
-                return { ...todo, check: !todo.check }
+                return { ...todo, check: !todo.check };
             }
             return todo;
         });
@@ -42,17 +42,47 @@ const Todo = () => {
             return todo;
         });
         setTodos(newTodos);
-    }
+    };
+
+    const onTodoEditClick = (index) => {
+        const newTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, isEditMode: !todo.isEditMode };
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    };
+    
+    const onEditInputChange = (e, index) => {
+        const newTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, editTodo: e.target.value };
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    };
+    
+    const onSaveEditClick = (index) => {
+        const newTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, label: todo.editTodo, isEditMode: !todo.isEditMode, editTodo: "" };
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    };
 
     const hide = () => {
         setOpacity(0);
         setTransition("none");
-    }
+    };
 
     const show = () => {
         setOpacity(0.3);
         setTransition("200ms");
-    }
+    };
 
     return (
         <div>
@@ -165,20 +195,74 @@ const Todo = () => {
                                         transform: "translateY(5px)"
                                     }}
                                     onMouseEnter={show} onMouseLeave={hide}>
-                                    {todo.label}
+                                    { todo.isEditMode ? 
+                                        <input type="text"
+                                            className="form-control"
+                                            placeholder=""
+                                            name="editTodo"
+                                            value= {todo.editTodo}
+                                            onChange= {(e) => onEditInputChange(e, index)}
+                                        ></input> 
+                                        : 
+                                        todo.label 
+                                    }
                                 </p>
 
-                                <button onClick={() => onTodoDeleteClick(index)}
-                                    style={{
-                                        border: "0px solid white",
-                                        backgroundColor: "transparent",
-                                        paddingLeft: 15,
-                                        opacity: `${opacity}`,
-                                        transition: `${transition}`
-                                    }}
-                                    onMouseEnter={show} onMouseLeave={hide}>
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
+                                { todo.isEditMode ?
+                                    <button onClick={() => onSaveEditClick(index)} 
+                                        style={{
+                                            border: "0px solid white",
+                                            backgroundColor: "transparent",
+                                            color: theme === "dark" ? "whitesmoke" : "black",
+                                            paddingLeft: 20,
+                                            opacity: `${opacity}`,
+                                            transition: `${transition}`
+                                        }}
+                                        onMouseEnter={show} onMouseLeave={hide}>
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    :
+                                    <button onClick={() => onTodoEditClick(index)} 
+                                        style={{
+                                            border: "0px solid white",
+                                            backgroundColor: "transparent",
+                                            color: theme === "dark" ? "whitesmoke" : "black",
+                                            paddingLeft: 20,
+                                            opacity: `${opacity}`,
+                                            transition: `${transition}`
+                                        }}
+                                        onMouseEnter={show} onMouseLeave={hide}>
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                }
+
+                                {   todo.isEditMode ?
+                                    <button onClick={() => onTodoEditClick(index)}
+                                        style={{
+                                            border: "0px solid white",
+                                            backgroundColor: "transparent",
+                                            color: theme === "dark" ? "whitesmoke" : "black",
+                                            paddingLeft: 10,
+                                            opacity: `${opacity}`,
+                                            transition: `${transition}`
+                                        }}
+                                        onMouseEnter={show} onMouseLeave={hide}>
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    :
+                                    <button onClick={() => onTodoDeleteClick(index)}
+                                        style={{
+                                            border: "0px solid white",
+                                            backgroundColor: "transparent",
+                                            color: theme === "dark" ? "whitesmoke" : "black",
+                                            paddingLeft: 10,
+                                            opacity: `${opacity}`,
+                                            transition: `${transition}`
+                                        }}
+                                        onMouseEnter={show} onMouseLeave={hide}>
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                }
                             </div>
                         )
                     })
@@ -190,7 +274,6 @@ const Todo = () => {
                     width: "100vw",
                     backgroundColor: theme === "dark" ? "#0F2F2F" : "thistle",
                 }}>
-
             </div>
         </div>
     );
